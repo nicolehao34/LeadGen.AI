@@ -12,8 +12,8 @@ An AI-powered lead generation platform for DuPont Tedlar's Graphics & Signage te
 - ✉️ **Personalized Outreach**: Generate custom outreach messages based on ICP and stakeholder
 - 📊 **Lead Management**: Review, filter, and export leads
 
-## Getting Started
-
+## Getting Started... So, how do I use LeadsGen.AI?!
+Good question! Please follow the steps below! - Nico
 ### Installation
 
 1. Clone the repository
