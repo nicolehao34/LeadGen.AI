@@ -31,7 +31,7 @@ Good question! Please follow the steps below! - Nico :)
    ```
    npm install
    ```
-3. Create a `.env` file with your OpenAI API key:
+3. Create a `.env` file with your OpenAI API key and LinkedIn Sales Navigator API Key:
    ```
    OPENAI_API_KEY=your_key_here
    LINKEDIN_API_KEY=your_real_api_key_here
