@@ -1,0 +1,38 @@
+\begin{enumerate}
+    \item \textbf{Login \& ICP Selection}: User logs into the platform and selects or creates a relevant \textit{Ideal Customer Profile}, e.g., ``Architectural Signage Companies, \$10M--\$500M revenue, located in North America.''. I designed a button that leads to a window for the end-user to add and tweak their ICP criteria for stability and future use purposes.
+
+    \item \textbf{Upload or Choose Target Event}: User selects from pre-loaded events/trade shows or uploads a CSV/list of companies/events (from web search, updated weekly).
+
+    \item \textbf{Configure Filters \& Target Personas}: User specifies key decision-maker roles (e.g., ``Director of Product,'' ``VP of Innovation'').
+
+    \item \textbf{Trigger Lead Generation}: User clicks ``Generate Leads'' --- backend AI agent starts enrichment and lead qualification. Generate a list of lead profiles with corresponding decision maker's LinkedIn information. Clicking on each profile leads to a dashboard with graphs and stats showing how the company fits the ICP.
+
+    \item \textbf{Review Output Dashboard} User views a structured dashboard with:
+        \begin{itemize}
+            \item Event $\rightarrow$ Company $\rightarrow$ Stakeholder $\rightarrow$ Reason for Fit 
+            $\rightarrow$ Key decision maker + window to generate and edit Personalized Outreach Message (with sources cited). User can approve, edit, or reject any AI-drafted outreach message.
+        \end{itemize}
+
+    \item \textbf{Export or Push to CRM} Export as CSV or auto-send to tools like HubSpot/Salesforce.
+
+    \item \textbf{Save ICP Template} Save new ICP for future campaigns across other lines of business.
+\end{enumerate}
+
+\subsection{AI Agent Workflow}
+\begin{enumerate}
+    \item \textbf{Receive Request + ICP Config}: Accepts structured input: event name, ICP filters (industry, size, geography), and target personas.
+
+    \item \textbf{Company Sourcing}: Scrapes company lists from event websites, trade associations, or uploaded files. Filters companies based on ICP using public data (Crunchbase, LinkedIn, Clearbit, etc.).
+
+    \item \textbf{Stakeholder/Decision maker Identification}: For each company, uses LinkedIn Sales Navigator or Clay API to find decision-makers matching the user's persona filters.
+
+    \item \textbf{Lead Enrichment}: Gathers info such as company size, market activity, recent news, or tech stack.
+
+    \item \textbf{Rationale Generation}: Uses GPT-4o to explain why the company is a match based on ICP + enriched data.
+
+    \item \textbf{Outreach Message Drafting}: Prompts LLM to generate a brief, tailored outreach message for each stakeholder, referencing event, company, and rationale.
+
+    \item \textbf{Data Structuring + Error Handling}: Ensures clean JSON/table format, with null checks, deduplication, and scoring.
+
+    \item \textbf{Serve Output}: Returns structured output to the frontend dashboard API for display and export.
+\end{enumerate}
