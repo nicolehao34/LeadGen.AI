@@ -1,6 +1,9 @@
-# DuPont Tedlar Lead Generation Platform
+# LeadsGen.AI
 
-An AI-powered lead generation platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
+An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
+
+Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar.
+
 
 ## Features
 
