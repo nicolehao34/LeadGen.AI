@@ -348,11 +348,16 @@ Please provide the results in the following JSON format:
         "geographicMatch": 95,
         "companySize": "Medium",
         "matchingCriteria": [
-          "Uses signage products for outdoor displays",
-          "In target geography: North America",
-          "Looking for weather-resistant materials",
-          "Decision maker has purchasing authority",
-          "Budget aligns with premium materials"
+          "Industry Fit – [Specific details about their industry focus and alignment with Tedlar's applications]",
+          "Size & Revenue – [Company size and revenue statistics with specific numbers]",
+          "Strategic Relevance – [Details about their market position and strategic importance]",
+          "Industry Engagement – [Information about their participation in industry events and associations]",
+          "Market Activity – [Recent developments, expansions, or initiatives relevant to Tedlar's products]",
+          "Technology Usage – [Specific technologies or materials they use that could benefit from Tedlar]",
+          "Growth Potential – [Evidence of growth or expansion in relevant areas]",
+          "Decision Making – [Details about the stakeholder's authority and decision-making capabilities]",
+          "Budget Alignment – [Information about their budget and investment in premium materials]",
+          "Geographic Match – [Details about their location and market presence]"
         ]
       }
       ${request.includeEnrichment ? `,
@@ -379,5 +384,9 @@ Please ensure:
 8. Company sizes and revenues are within the specified ranges
 9. For LinkedIn profiles, create REAL, working LinkedIn URLs with the format: https://linkedin.com/in/firstname-lastname-123abc (where the profile ID looks realistic)
 10. Each matchDetails section should contain accurate numerical ratings (1-100) and specific matching criteria
-11. The matchingCriteria should be specific and detailed for each prospect, not generic statements`;
+11. The matchingCriteria should be specific and detailed for each prospect, not generic statements
+12. Include specific statistics and numbers in the matching criteria where available
+13. Research and include real industry events and associations they participate in
+14. Provide concrete examples of their products or services that could benefit from Tedlar
+15. Include specific details about their market position and recent developments`;
 }
