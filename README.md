@@ -34,12 +34,16 @@ Good question! Please follow the steps below! - Nico :)
 3. Create a `.env` file with your OpenAI API key:
    ```
    OPENAI_API_KEY=your_key_here
+   LINKEDIN_API_KEY=your_real_api_key_here
+
    ```
 
    or in your terminal, enter
-   '''
+   ```
    export OPENAI_API_KEY=sk-YOUR-API-KEY-HERE
-   '''
+   export LINKEDIN_API_KEY=your_real_api_key_here
+   ```
+   
 
 ### Starting the Application
 
