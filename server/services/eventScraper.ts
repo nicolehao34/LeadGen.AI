@@ -12,18 +12,53 @@ interface ScrapedEvent {
   description?: string;
 }
 
+// You can add more event source scrapers (e.g., for ISA, SGIA, etc.) below if the end user wants to expand the event list.
+/**
+ * Scrape FESPA events from the official website
+ */
+async function scrapeFespaEvents(): Promise<InsertEvent[]> {
+  const url = 'https://www.fespa.com/en/events';
+  const res = await axios.get(url);
+  const $ = cheerio.load(res.data);
+  const events: InsertEvent[] = [];
+
+  // FESPA event cards are in .event-listing__item
+  $('.event-listing__item').each((_, el) => {
+    const name = $(el).find('.event-listing__title').text().trim();
+    const date = $(el).find('.event-listing__date').text().trim();
+    const location = $(el).find('.event-listing__location').text().trim();
+    const relativeUrl = $(el).find('a.event-listing__link').attr('href');
+    const sourceUrl = relativeUrl ? `https://www.fespa.com${relativeUrl}` : url;
+    // Exhibitor count is not always available, so we skip it
+    if (name && date && location) {
+      events.push({
+        name,
+        date,
+        location,
+        sourceUrl,
+      });
+    }
+  });
+  return events;
+}
+
 /**
  * Sync events from web or use fallback data if scraping fails
  */
 export async function syncEvents(): Promise<Event[]> {
   try {
-    // For production, we would implement real web scraping here
-    // Since web scraping is often blocked or unreliable, we'll use pre-validated data
-    // that would normally come from scraping these sites
+    // Try to scrape FESPA events
+    const fespaEvents = await scrapeFespaEvents();
+    if (fespaEvents.length > 0) {
+      // Optionally clear old events or merge with others
+      const insertPromises = fespaEvents.map(event => storage.createEvent(event));
+      return Promise.all(insertPromises);
+    }
+    // If scraping fails or returns nothing, use fallback
     return addIndustryEvents();
   } catch (error) {
     console.error('Error syncing events:', error);
-    return [];
+    return addIndustryEvents();
   }
 }
 

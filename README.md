@@ -14,7 +14,7 @@ Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready
 ## Features Overview
 
 - 🎯 **ICP Targeting**: Define and select Ideal Customer Profiles (ICPs)
-- 🔍 **Event Research**: Explore industry events with source citations
+- 🔍 **Event Research**: Explore industry events with source citations (now scraped live from the FESPA website; more sources can be added)
 - 📋 **Stakeholder Personas**: Define and target specific roles within organizations
 - 🤖 **AI-Powered Lead Generation**: Generate qualified leads with match reasons and fit scores
 - 💼 **Lead Enrichment**: Enhance leads with company and stakeholder information
@@ -46,7 +46,7 @@ npm run dev
 The application will be available at [http://localhost:3000](http://localhost:3000)
 
 
-Assuming that you are an end-user who's working at DuPont Tedlar’s sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
+Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
 The first step is to define who your ideal customers are.
@@ -84,7 +84,7 @@ Next, select the industry event where you want to find potential leads.
 
 ### Select from Industry Events
 
-1. Browse the list of industry events
+1. Browse the list of industry events (scraped live from FESPA; more sources can be added in the future)
 2. Each event card shows:
    - Event name
    - Date and location

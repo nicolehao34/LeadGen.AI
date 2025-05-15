@@ -31,7 +31,19 @@ The platform uses a modern React-based frontend with a Node.js Express backend. 
 - **Backend**: Node.js with Express
 - **Data Storage**: In-memory storage (can be upgraded to PostgreSQL)
 - **AI Processing**: OpenAI API integration
-- **Data Scraping**: Web scraping for event data with proper citations
+- **Data Scraping**: Web scraping for event data with proper citations (currently scrapes FESPA events live; more sources can be added)
+
+### Why Node.js Instead of Python?
+
+Node.js was chosen for the backend instead of Python for several reasons:
+
+- **Unified JavaScript Stack**: Using Node.js allows both the frontend and backend to be written in JavaScript/TypeScript, making development, code sharing, and onboarding easier.
+- **Real-time and Async Operations**: Node.js excels at handling asynchronous I/O and real-time data, which is ideal for web scraping, API calls, and serving a modern web app.
+- **Performance**: Node.js is highly performant for I/O-bound tasks, such as fetching data from multiple web sources and handling concurrent API requests.
+- **Ecosystem**: The npm ecosystem provides robust libraries for web scraping (axios, cheerio), API integration, and rapid prototyping.
+- **Scalability**: Node.js is well-suited for building scalable web services and can easily be containerized or deployed to cloud platforms.
+
+While Python is also a strong choice for data processing and machine learning, Node.js offers a better fit for a full-stack, event-driven web application like this, especially when seamless integration between frontend and backend is desired.
 
 ## Frontend Structure
 
@@ -75,9 +87,9 @@ The backend provides REST API endpoints to support all frontend operations:
 - `DELETE /api/icp-profiles/:id` - Delete an ICP profile
 
 #### Events
-- `GET /api/events` - Get all events
+- `GET /api/events` - Get all events (live-scraped from FESPA; extensible to more sources)
 - `GET /api/events/:id` - Get specific event
-- `POST /api/events/sync` - Sync events from web sources
+- `POST /api/events/sync` - Sync events from web sources (currently FESPA; more can be added)
 
 #### Personas
 - `GET /api/personas` - Get all personas for the current user
@@ -304,10 +316,6 @@ The platform is designed to potentially integrate with:
 
 ### Web Scraping Integration
 
-The platform includes web scraping capabilities to fetch the latest events from industry sources such as:
-- FESPA (Federation of European Screen Printers Associations)
-- ISA (International Sign Association)
-- SGIA (Specialty Graphic Imaging Association)
-- Other relevant industry event sites
+The platform includes web scraping capabilities to fetch the latest events from industry sources. Currently, it scrapes live event data from the FESPA website. The system is designed to be extensible, so more event sources (e.g., ISA, SGIA) can be added easily in the future.
 
 All web-scraped data includes source citations to maintain data integrity and authenticity.
