@@ -300,7 +300,7 @@ After contacting leads, you can update their status to improve future lead gener
 For detailed information, see:
 
 - [Technical Documentation](DOCUMENTATION.md) - System architecture, tech stack, data storage, data flow, data processing
-- [Design Document]() - End-user and AI agent workflows design + UX design
+- [Design Document](Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
 
 
 ## Final Presentation/Demo
