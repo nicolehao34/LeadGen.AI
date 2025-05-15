@@ -1,119 +1,55 @@
-# DuPont Tedlar Lead Generation System
+# DuPont Tedlar Lead Generation Platform
 
-An AI-powered lead generation and management system for DuPont Tedlar's Graphics & Signage team. This system automates the process of identifying, qualifying, and generating personalized outreach for potential leads.
+An AI-powered lead generation platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
 
 ## Features
 
-- **Event Research**: Automatically identifies relevant industry events and trade shows
-- **Company Sourcing**: Finds and prioritizes companies based on revenue and industry fit
-- **Decision Maker Identification**: Locates key stakeholders at target companies
-- **AI-Powered Qualification**: Generates qualification rationale using GPT-4
-- **Personalized Outreach**: Creates tailored outreach messages for each lead
-- **Interactive Dashboard**: Modern UI for managing and viewing leads
+- 🎯 **ICP Targeting**: Define and select Ideal Customer Profiles (ICPs)
+- 🔍 **Event Research**: Explore industry events with source citations
+- 📋 **Stakeholder Personas**: Define and target specific roles within organizations
+- 🤖 **AI-Powered Lead Generation**: Generate qualified leads with match reasons and fit scores
+- 💼 **Lead Enrichment**: Enhance leads with company and stakeholder information
+- ✉️ **Personalized Outreach**: Generate custom outreach messages based on ICP and stakeholder
+- 📊 **Lead Management**: Review, filter, and export leads
 
-## Tech Stack
+## Getting Started
 
-### Backend
-- FastAPI (Python)
-- OpenAI GPT-4
-- BeautifulSoup4 for web scraping
-- Pydantic for data validation
+### Installation
 
-### Frontend
-- React
-- Material-UI
-- Axios for API calls
-- DataGrid for data display
+1. Clone the repository
+2. Install dependencies:
+   ```
+   npm install
+   ```
+3. Create a `.env` file with your OpenAI API key:
+   ```
+   OPENAI_API_KEY=your_key_here
+   ```
 
-## Setup Instructions
+### Starting the Application
 
-1. Clone the repository:
-```bash
-git clone [repository-url]
-cd dupont-tedlar-lead-generator
+Run the development server:
+```
+npm run dev
 ```
 
-2. Set up the backend:
-```bash
-cd Backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
+The application will be available at [http://localhost:5000](http://localhost:5000)
 
-3. Set up environment variables:
-Create a `.env` file in the Backend directory:
-```
-OPENAI_API_KEY=your_openai_api_key
-```
+## Documentation
 
-4. Set up the frontend:
-```bash
-cd Frontend
-npm install
-```
+For detailed information, see:
 
-5. Run the application:
-```bash
-# Terminal 1 (Backend)
-cd Backend
-uvicorn app.main:app --reload
-
-# Terminal 2 (Frontend)
-cd Frontend
-npm start
-```
-
-## API Integration Points
-
-The system is designed to integrate with:
-- LinkedIn Sales Navigator API (for decision maker identification)
-- Clay API (for company data enrichment)
-- Event APIs (for event research)
-
-## Project Structure
-
-```
-.
-├── Backend/
-│   ├── app/
-│   │   ├── main.py
-│   │   ├── routers/
-│   │   ├── services/
-│   │   └── models/
-│   └── requirements.txt
-├── Frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   └── App.js
-│   └── package.json
-└── README.md
-```
-
-## Usage
-
-1. Access the dashboard at `http://localhost:3000`
-2. Enter industry keywords to search for relevant events
-3. Click "Generate Leads" to start the lead generation process
-4. View and manage leads in the interactive dashboard
-5. Export leads or generate personalized outreach messages
-
-## Future Enhancements
-
-- Integration with CRM systems
-- Advanced analytics and reporting
-- Automated follow-up scheduling
-- Lead scoring and prioritization
-- Custom outreach templates
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a Pull Request
+- [User Guide](USER_GUIDE.md) - How to use the platform
+- [Technical Documentation](DOCUMENTATION.md) - System architecture and data flow
+- [Implementation Guide](IMPLEMENTATION_GUIDE.md) - Detailed technical implementation information
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Proprietary - All rights reserved.
+
+## Acknowledgments
+
+- FESPA (Federation of European Screen Printers Associations)
+- ISA (International Sign Association)
+- SGIA (Specialty Graphic Imaging Association)
+- Other industry sources used for event data
