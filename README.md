@@ -11,7 +11,7 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar.
 
 
-## Features
+## Features Overview
 
 - 🎯 **ICP Targeting**: Define and select Ideal Customer Profiles (ICPs)
 - 🔍 **Event Research**: Explore industry events with source citations
