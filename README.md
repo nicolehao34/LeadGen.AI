@@ -13,7 +13,8 @@ An AI-powered lead generation platform for DuPont Tedlar's Graphics & Signage te
 - 📊 **Lead Management**: Review, filter, and export leads
 
 ## Getting Started... So, how do I use LeadsGen.AI?!
-Good question! Please follow the steps below! - Nico
+Good question! Please follow the steps below! - Nico :)
+
 ### Installation
 
 1. Clone the repository
@@ -40,16 +41,14 @@ The application will be available at [http://localhost:5000](http://localhost:50
 For detailed information, see:
 
 - [User Guide](USER_GUIDE.md) - How to use the platform
-- [Technical Documentation](DOCUMENTATION.md) - System architecture and data flow
-- [Implementation Guide](IMPLEMENTATION_GUIDE.md) - Detailed technical implementation information
+- [Technical Documentation](DOCUMENTATION.md) - System architecture, tech stack, data storage, data flow, data processing
+- [Design Document]() - End-user and AI agent workflows design + UX design
+
+
+## Final Presentation/Demo
+- TO BE ADDED!!!!!!
 
 ## License
 
 Proprietary - All rights reserved.
 
-## Acknowledgments
-
-- FESPA (Federation of European Screen Printers Associations)
-- ISA (International Sign Association)
-- SGIA (Specialty Graphic Imaging Association)
-- Other industry sources used for event data
