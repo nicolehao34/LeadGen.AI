@@ -216,7 +216,7 @@ interface Lead {
 The lead generation process consists of several distinct steps:
 
 ### 1. ICP Definition
-Users define their Ideal Customer Profile criteria including:
+We let the users define their Ideal Customer Profile criteria including:
 - Industry and sub-industry focus
 - Company size (employee count)
 - Revenue range
@@ -225,7 +225,7 @@ Users define their Ideal Customer Profile criteria including:
 
 ### 2. Event Targeting
 Users select industry events from:
-- Pre-synced events from web sources with proper citations
+- Pre-synced events from web sources with proper citations (uses real data, can be updated by clicking on the sync web button)
 - Custom uploaded events/companies
 
 ### 3. Filtering Configuration
@@ -243,8 +243,9 @@ Users define additional filters for lead generation:
 - Keywords or specific criteria
 - Minimum strategic relevance score threshold
 
-### 4. AI-Powered Lead Generation
-The system uses OpenAI to generate leads by:
+### 4. AI-Powered Lead Generation + Decision-maker Search
+We use a hybrid approach of **ChatGPT 4o model** and the **LinkedIn Sales Navigator API** to:
+
 1. Analyzing the ICP and event attendees
 2. Identifying potential matches
 3. Qualifying leads based on set criteria
@@ -252,27 +253,20 @@ The system uses OpenAI to generate leads by:
 5. Creating personalized outreach messages
 6. Enriching leads with additional data (technologies, funding, competitors)
 
-### 5. Decision-Maker Identification
-The platform identifies and validates specific decision-makers at target companies:
+Then switching to LinkedIn Sales Navigator, LeadGen.ai
 
-- Integrates with LinkedIn Sales Navigator and Clay API for real-time stakeholder data
-- Focuses on key roles like:
-  - VPs of Product Development
-  - Directors of Innovation
-  - R&D Leaders focused on coatings and protective solutions
-- Qualifies decision-makers based on:
-  - Relevance to Tedlar applications
-  - Authority to make purchasing decisions
-  - Professional background and experience
-  - Current responsibilities and role
-- Enables filtering and selection of the most qualified stakeholders
-- Each identified decision-maker includes:
-  - Complete contact information (when available)
-  - LinkedIn profile URL
-  - Qualification rationale
-  - Strategic relevance score
+7. Find decision-makers at those companies
+8. get detailed contact information
+9. then verify the person's role and seniority.
 
-### 6. Personalized Outreach Generation
+Finally, it combines this data to create comprehensive leads with:
+- Real company information from ChatGPT's web search
+- Verified decision-maker details from LinkedIn
+- Calculated fit scores and match reasons (this scoring formula can be modified later by the end-user if needed, to weigh different components differently)
+- Personalized outreach messages (if requested)
+
+
+### 5. Personalized Outreach Generation
 For each qualified decision-maker, the system generates:
 
 - Customized email templates
@@ -284,7 +278,7 @@ For each qualified decision-maker, the system generates:
   - The specific product fit and value proposition
   - Current industry trends and challenges
 
-### 7. Lead Review and Refinement
+### 8. Lead Review and Refinement
 Users can:
 - Review generated leads
 - Adjust fit scores
@@ -292,7 +286,7 @@ Users can:
 - Update lead status
 - Prioritize leads for outreach
 
-### 8. Lead Export
+### 9. Lead Export
 Users can export leads to:
 - CSV for spreadsheet applications
 - JSON for system integrations
