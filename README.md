@@ -36,6 +36,11 @@ Good question! Please follow the steps below! - Nico :)
    OPENAI_API_KEY=your_key_here
    ```
 
+   or in your terminal, enter
+   '''
+   export OPENAI_API_KEY=sk-YOUR-API-KEY-HERE
+   '''
+
 ### Starting the Application
 
 Run the development server:
