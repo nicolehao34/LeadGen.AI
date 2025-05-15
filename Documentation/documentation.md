@@ -68,4 +68,10 @@ Top-level folder for all frontend (React.js) source code.
 - package-lock.json: Auto-generated file locking specific versions of dependencies for consistency.
 
 
+Notes: The very first attempt. I design this just to get the repo structure set up first, as well as testing running the API locally. Then I moved on to designing the user + AI agent workflow. 
+
+# Iteration 2
+
+Now with the completed workflows, I added...
+
 
