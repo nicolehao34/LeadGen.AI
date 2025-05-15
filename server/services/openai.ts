@@ -1,4 +1,5 @@
 import OpenAI from "openai";
+import { searchCompanies, searchPeople, getCompanyDetails, getPersonDetails, LinkedInSearchParams } from './linkedin';
 
 // Validate API key format
 export function isValidApiKeyFormat(key: string | undefined): boolean {
@@ -100,52 +101,283 @@ export interface GeneratedLead {
  */
 export async function generateLeads(request: LeadGenerationRequest): Promise<GeneratedLead[]> {
   try {
-    // Validate API key
+    // Validate API keys
     if (!apiKey || !isValidApiKeyFormat(apiKey)) {
       throw new Error("Invalid or missing OpenAI API key. Please set a valid API key in your environment variables.");
     }
-    
-    // Create a detailed prompt for the model
-    const prompt = createLeadGenerationPrompt(request);
-    
-    // Call the OpenAI API
+
+    // First, use ChatGPT to find matching companies
+    const prompt = `
+Find real companies that match these criteria:
+- Industry: ${request.icpProfile.industry}
+${request.icpProfile.subIndustry ? `- Sub-Industry: ${request.icpProfile.subIndustry}` : ''}
+- Revenue Range: ${request.icpProfile.minRevenue} to ${request.icpProfile.maxRevenue}
+- Geography: ${request.icpProfile.geography}
+- Employee Count: ${request.icpProfile.minEmployees} to ${request.icpProfile.maxEmployees}
+${request.filters?.technologies?.length ? `- Technologies: ${request.filters.technologies.join(', ')}` : ''}
+${request.filters?.keywords?.length ? `- Keywords: ${request.filters.keywords.join(', ')}` : ''}
+
+Return a JSON array of companies with this structure:
+{
+  "companies": [
+    {
+      "name": "Company Name",
+      "website": "company-website.com",
+      "description": "Brief company description",
+      "industry": "Specific industry",
+      "size": "Employee count range",
+      "revenue": "Revenue range",
+      "location": "Headquarters location",
+      "linkedInUrl": "https://linkedin.com/company/companyname"
+    }
+  ]
+}
+
+Only include real, existing companies that would likely attend ${request.event.name} in ${request.event.location}.
+`;
+
     const response = await openai.chat.completions.create({
-      model: "gpt-4o",
+      model: "gpt-4",
       messages: [
-        { role: "system", content: "You are an AI assistant that helps generate and qualify sales leads for the DuPont Tedlar Graphics & Signage team. You create realistic, detailed leads based on the provided criteria." },
+        { 
+          role: "system", 
+          content: "You are an AI assistant that helps find real companies matching specific criteria. You have access to current business data and can identify actual companies that exist." 
+        },
         { role: "user", content: prompt }
       ],
       response_format: { type: "json_object" },
       temperature: 0.7,
     });
 
-    // Parse the response
     const content = response.choices[0].message.content;
     if (!content) {
       throw new Error("No content returned from OpenAI");
     }
 
     const parsedData = JSON.parse(content);
-    return parsedData.leads || [];
+    const companies = parsedData.companies.slice(0, request.count);
+
+    // For each company found by ChatGPT, use LinkedIn API to find decision-makers
+    const leads: GeneratedLead[] = [];
+    
+    for (const company of companies) {
+      // Search for people at this company using LinkedIn
+      const peopleSearchParams: LinkedInSearchParams = {
+        industry: request.icpProfile.industry,
+        titles: request.personas.flatMap(p => p.titles.split(', ')),
+        departments: request.personas.map(p => p.department),
+        geography: request.icpProfile.geography,
+        keywords: request.filters?.keywords
+      };
+
+      const people = await searchPeople(peopleSearchParams);
+      
+      // Get detailed person information
+      const personDetails = await Promise.all(
+        people.slice(0, 3).map(person => getPersonDetails(person.id))
+      );
+
+      // Create leads for each matching person
+      for (const person of personDetails) {
+        // Calculate fit score based on various factors
+        const fitScore = calculateFitScore(company, person, request);
+
+        // Generate match reason using OpenAI
+        const matchReason = await generateMatchReason(company, person, request);
+
+        // Generate outreach message if requested
+        let outreachMessage;
+        if (request.generateMessages) {
+          outreachMessage = await generateOutreachMessage({
+            company: {
+              name: company.name,
+              industry: company.industry
+            },
+            stakeholder: {
+              name: `${person.firstName} ${person.lastName}`,
+              title: person.title,
+              company: company.name
+            },
+            matchReason
+          }, request);
+        }
+
+        // Get enrichment data if requested
+        let enrichmentData;
+        if (request.includeEnrichment) {
+          enrichmentData = {
+            technologies: company.technologies,
+            fundingInfo: company.revenue,
+            recentNews: [], // Would need to integrate with a news API
+            competitors: [] // Would need to integrate with a competitor analysis API
+          };
+        }
+
+        leads.push({
+          company: {
+            name: company.name,
+            website: company.website,
+            description: company.description,
+            industry: company.industry,
+            size: company.size,
+            revenue: company.revenue,
+            location: company.location,
+            linkedInUrl: company.linkedInUrl
+          },
+          stakeholder: {
+            name: `${person.firstName} ${person.lastName}`,
+            title: person.title,
+            company: company.name,
+            linkedInUrl: person.linkedInUrl,
+            email: person.email,
+            phone: person.phone
+          },
+          matchReason,
+          fitScore,
+          matchDetails: {
+            industryRelevance: calculateIndustryRelevance(company, request),
+            productFit: calculateProductFit(company, request),
+            decisionMakingAuthority: calculateDecisionMakingAuthority(person),
+            budgetAlignment: calculateBudgetAlignment(company, request),
+            geographicMatch: calculateGeographicMatch(company, request),
+            companySize: company.size,
+            matchingCriteria: generateMatchingCriteria(company, person, request)
+          },
+          outreachMessage,
+          enrichmentData
+        });
+      }
+    }
+
+    return leads;
   } catch (error: any) {
-    console.error("Error generating leads with OpenAI:", error);
+    console.error("Error generating leads:", error);
     
     // Handle and categorize errors more precisely
-    if (error.status === 429) {
+    if (error.message?.includes('LinkedIn API')) {
+      throw new Error("LinkedIn API error: " + error.message);
+    } else if (error.status === 429) {
       if (error.error?.code === 'insufficient_quota') {
         throw new Error("OpenAI API quota exceeded. Please check your billing details.");
       } else {
-        throw new Error("OpenAI rate limit exceeded. Please try again after a few minutes.");
+        throw new Error("API rate limit exceeded. Please try again after a few minutes.");
       }
-    } else if (error.message && typeof error.message === 'string' && error.message.includes("API key")) {
-      throw new Error("Invalid OpenAI API key. Please check your API key in the environment variables.");
-    } else if (!apiKey || !isValidApiKeyFormat(apiKey)) {
-      throw new Error("Missing or invalid OpenAI API key format. Please set a valid API key.");
+    } else if (error.message?.includes("API key")) {
+      throw new Error("Invalid API key. Please check your API keys in the environment variables.");
     }
     
-    // For other unexpected errors, throw a clearer message
-    throw new Error(`OpenAI API request failed: ${error.message ? String(error.message) : 'Unknown error'}`);
+    throw new Error(`Lead generation failed: ${error.message || 'Unknown error'}`);
   }
+}
+
+// Helper functions for calculating scores and criteria
+function calculateFitScore(company: any, person: any, request: LeadGenerationRequest): number {
+  const weights = {
+    industryRelevance: 0.3,
+    productFit: 0.2,
+    decisionMakingAuthority: 0.2,
+    budgetAlignment: 0.15,
+    geographicMatch: 0.15
+  };
+
+  return Math.round(
+    calculateIndustryRelevance(company, request) * weights.industryRelevance +
+    calculateProductFit(company, request) * weights.productFit +
+    calculateDecisionMakingAuthority(person) * weights.decisionMakingAuthority +
+    calculateBudgetAlignment(company, request) * weights.budgetAlignment +
+    calculateGeographicMatch(company, request) * weights.geographicMatch
+  );
+}
+
+function calculateIndustryRelevance(company: any, request: LeadGenerationRequest): number {
+  // Base score on industry match
+  let score = company.industry === request.icpProfile.industry ? 90 : 70;
+  
+  // Adjust for sub-industry if specified
+  if (request.icpProfile.subIndustry && company.specialties?.includes(request.icpProfile.subIndustry)) {
+    score += 10;
+  }
+  
+  return Math.min(score, 100);
+}
+
+function calculateProductFit(company: any, request: LeadGenerationRequest): number {
+  // Base score on company size and revenue
+  let score = 80;
+  
+  // Adjust based on technologies and specialties
+  if (company.technologies?.some((tech: string) => 
+    request.filters?.technologies?.includes(tech))) {
+    score += 10;
+  }
+  
+  return Math.min(score, 100);
+}
+
+function calculateDecisionMakingAuthority(person: any): number {
+  // Base score on seniority
+  const seniorityScores: { [key: string]: number } = {
+    'C-Level': 95,
+    'VP': 90,
+    'Director': 85,
+    'Manager': 75,
+    'Senior': 80,
+    'Lead': 70
+  };
+  
+  return seniorityScores[person.seniority] || 60;
+}
+
+function calculateBudgetAlignment(company: any, request: LeadGenerationRequest): number {
+  // Base score on revenue range
+  let score = 80;
+  
+  // Adjust based on company size
+  const employeeCount = parseInt(company.employeeCount);
+  if (employeeCount >= parseInt(request.icpProfile.minEmployees) && 
+      employeeCount <= parseInt(request.icpProfile.maxEmployees)) {
+    score += 10;
+  }
+  
+  return Math.min(score, 100);
+}
+
+function calculateGeographicMatch(company: any, request: LeadGenerationRequest): number {
+  return company.location.includes(request.icpProfile.geography) ? 95 : 70;
+}
+
+function generateMatchingCriteria(company: any, person: any, request: LeadGenerationRequest): string[] {
+  const criteria: string[] = [];
+  
+  // Industry Fit
+  criteria.push(`Industry Fit – ${company.industry} company with ${company.specialties?.join(', ')} expertise`);
+  
+  // Size & Revenue
+  criteria.push(`Size & Revenue – ${company.size} company with ${company.revenue} annual revenue`);
+  
+  // Strategic Relevance
+  criteria.push(`Strategic Relevance – ${company.description}`);
+  
+  // Industry Engagement
+  if (company.specialties?.length) {
+    criteria.push(`Industry Engagement – Active in ${company.specialties.join(', ')}`);
+  }
+  
+  // Market Activity
+  if (company.technologies?.length) {
+    criteria.push(`Technology Usage – Uses ${company.technologies.join(', ')}`);
+  }
+  
+  // Decision Making
+  criteria.push(`Decision Making – ${person.seniority} level position in ${person.department}`);
+  
+  // Budget Alignment
+  criteria.push(`Budget Alignment – Revenue and size match target criteria`);
+  
+  // Geographic Match
+  criteria.push(`Geographic Match – Located in ${company.location}`);
+  
+  return criteria;
 }
 
 /**
@@ -389,4 +621,28 @@ Please ensure:
 13. Research and include real industry events and associations they participate in
 14. Provide concrete examples of their products or services that could benefit from Tedlar
 15. Include specific details about their market position and recent developments`;
+}
+
+async function generateMatchReason(company: any, person: any, request: LeadGenerationRequest): Promise<string> {
+  const prompt = `Generate a concise match reason for why ${company.name} (${company.industry}) and ${person.firstName} ${person.lastName} (${person.title}) would be a good fit for our product. Consider:
+  - Industry alignment: ${company.industry}
+  - Company size: ${company.size}
+  - Revenue: ${company.revenue}
+  - Location: ${company.location}
+  - Person's role: ${person.title}
+  - Person's department: ${person.department}
+  - Person's seniority: ${person.seniority}
+  
+  Keep the reason brief and focused on the most relevant match factors.`;
+
+  const response = await openai.chat.completions.create({
+    model: "gpt-4",
+    messages: [
+      { role: "system", content: "You are an AI assistant that helps generate concise match reasons for sales leads." },
+      { role: "user", content: prompt }
+    ],
+    temperature: 0.7,
+  });
+
+  return response.choices[0].message.content || "No match reason generated";
 }
