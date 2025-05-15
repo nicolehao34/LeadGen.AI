@@ -137,7 +137,7 @@ Only include real, existing companies that would likely attend ${request.event.n
 `;
 
     const response = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4o",
       messages: [
         { 
           role: "system", 

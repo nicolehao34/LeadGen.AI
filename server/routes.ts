@@ -7,6 +7,7 @@ import { generateLeads, generateOutreachMessage, getCompanyEnrichment, LeadGener
 import { ZodError } from "zod";
 import * as z from "zod";
 import OpenAI from "openai";
+import { isValidLinkedInApiKey } from "./services/linkedin";
 
 // Function to securely manage API keys
 async function updateOpenAIAPIKey(apiKey: string): Promise<boolean> {
@@ -710,6 +711,27 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error('Error saving API key:', error);
       res.status(500).json({ message: 'Failed to save API key' });
     }
+  });
+
+  // Test endpoint to verify environment variables
+  router.get("/api/test-env", (req, res) => {
+    const openaiKey = process.env.OPENAI_API_KEY || undefined;
+    const linkedinKey = process.env.LINKEDIN_API_KEY || undefined;
+    
+    const response = {
+      openai: {
+        exists: !!openaiKey,
+        isValid: isValidApiKeyFormat(openaiKey),
+        length: openaiKey?.length || 0
+      },
+      linkedin: {
+        exists: !!linkedinKey,
+        isValid: isValidLinkedInApiKey(linkedinKey),
+        length: linkedinKey?.length || 0
+      }
+    };
+
+    res.json(response);
   });
 
   app.use("/api", router);
