@@ -34,7 +34,7 @@ Run the development server:
 npm run dev
 ```
 
-The application will be available at [http://localhost:5000](http://localhost:5000)
+The application will be available at [http://localhost:3000](http://localhost:3000)
 
 ## Documentation
 
