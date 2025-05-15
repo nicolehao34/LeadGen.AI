@@ -286,12 +286,14 @@ Final step: export your qualified leads.
 - Delete outdated ICPs using the delete icon
 - ICPs are saved for future use
 
+
+## Future Work
 ### Feedback Loop
 
-After contacting leads, you can update their status to improve future lead generation:
+I didn't get the time to implement this fully, but ideally, after contacting leads, the end-user should be able to update their status to improve future lead generation, to truly create a humna-in-the-loop ai agent experience. For example:
 
-1. Navigate to the "Review Leads" step
-2. Update lead statuses based on actual interactions
+1. User should be able to navigate to the "Review Leads" step
+2. Then Update lead statuses based on actual interactions
 3. This feedback helps the AI improve future recommendations
 
 
