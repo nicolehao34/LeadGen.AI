@@ -43,7 +43,8 @@ Good question! Please follow the steps below! - Nico :)
    export OPENAI_API_KEY=sk-YOUR-API-KEY-HERE
    export LINKEDIN_API_KEY=your_real_api_key_here
    ```
-   
+
+**NOTE: IF YOU DON'T HAVE A LINKEDIN API KEY, SWITCH TO THE DEMO BRANCH.**
 
 ### Starting the Application
 
