@@ -70,6 +70,8 @@ The text version of the demo is here:
 
 Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
 
+# End-User Guide
+(For the end-users at the sales team of Dupont-Tedlar.)
 
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
