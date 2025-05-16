@@ -1,4 +1,4 @@
-# LeadsGen.AI
+# LeadGen.AI
 <img width="359" alt="Screenshot 2025-05-15 at 3 45 33 PM" src="https://github.com/user-attachments/assets/ba73eb1b-dd05-4388-a65a-e76c2064e63b" />
 
 An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
@@ -21,7 +21,7 @@ Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready
 - ✉️ **Personalized Outreach**: Generate custom outreach messages based on ICP and stakeholder
 - 📊 **Lead Management**: Review, filter, and export leads
 
-## Getting Started... So, how do I use LeadsGen.AI?!
+## Getting Started... So, how do I use LeadGen.AI?!
 Good question! Please follow the steps below! - Nico :)
 
 ### Installation
