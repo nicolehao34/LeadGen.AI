@@ -8,7 +8,9 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 
 
 
-Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar.
+Built by Nicole Hao with **scalability** and **generalizability** in mind. 
+
+Ready to be adapted to different product teams at DuPont Tedlar.
 
 
 ## Features Overview
