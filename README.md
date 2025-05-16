@@ -5,19 +5,22 @@
 An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
 
 
-~ Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar. ✨
+Built by [Nicole Hao](https://nicolehao34.github.io/) with **scalability** and **generalizability** in mind. 
+
+
+Ready to be adapted to different product teams at DuPont Tedlar. ✨
 
 ## Updates
 WELCOME TO THE DEMO BRANCH. 
 
-**May 15, 2025 Update - I have no LinkedIn API Key :(** 
+**May 15, 2025 Update - I have no LinkedIn API Key >:(** 
 I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
 
 **May 15, 2025 Update**: I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
 
 ## Table of Contents
 - [Features Overview](#features-overview)
-- [Getting Started... So, how do I use LeadsGen.AI](#getting-started-so-how-do-i-use-leadsgennai)
+- [Getting Started... So, how do I use LeadsGen.AI?](#getting-started-so-how-do-i-use-leadsgennai)
    - [Installation](#installation)
    - [Starting the Application](#starting-the-application)
 - [Documentation](#documentation)
@@ -40,7 +43,7 @@ I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KE
 - 🔍 **Event Research**: Explore industry events with source citations (now scraped live from the FESPA website; more sources can be added)
 - 📋 **Stakeholder Personas**: Define and target specific roles within organizations
 - 🤖 **AI-Powered Lead Generation**: Generate qualified leads with match reasons and fit scores
-- 💼 **Lead Enrichment**: Enhance leads with company and stakeholder information
+- 💼 **Data Enrichment**: Enhance leads with extra company and stakeholder information
 - ✉️ **Personalized Outreach**: Generate custom outreach messages based on ICP and stakeholder
 - 📊 **Lead Management**: Review, filter, and export leads
 
@@ -61,7 +64,6 @@ I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KE
    or in your terminal, enter
    ```
    export OPENAI_API_KEY=sk-YOUR-API-KEY-HERE
-   export
    ```
    
 
@@ -79,7 +81,7 @@ The application will be available at [http://localhost:3000](http://localhost:30
 For more detailed information, see:
 
 - [Technical Documentation](DOCUMENTATION.md) - System architecture, tech stack, data storage, data flow, data processing
-- Design Document (Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
+- [Design Document](https://www.overleaf.com/read/brzbyyvjftny#c8a280) - Design assumptions, End-user and AI agent workflows design, UX design sketches,  data processing, summarization of implementation results
 
 
 ## Demo/Walkthrough
@@ -332,6 +334,7 @@ Final step: export your qualified leads.
 
 
 ## Future Work
+There are so many more features I would like to fully implement if I had more time. Here's a few that I will keep working on:
 
 ### Allowing multiple selections on target events page
 
@@ -347,7 +350,7 @@ Currently, if you click on the tab, it displays the following message:
 No detailed match criteria available for this lead
 This lead was generated with an earlier version of the system which didn't include detailed matching metrics.
 
-### Linkedin Sales Navigator API
+### Enabling Linkedin Sales Navigator API
 I have the backend and the frontend setup for this feature but I unfortunately don't have a linkedin API key.... So as a result the linkedin links you see in the demo are all invalid. In the main branch, I still kept most of the backend functionalities for linkedin services. If you are curious.
 
 ### Feedback Loop
@@ -362,3 +365,4 @@ I didn't get the time to implement this fully, but ideally, after contacting lea
 ## License
 
 Proprietary - All rights reserved.
+
