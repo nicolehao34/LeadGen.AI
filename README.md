@@ -163,7 +163,7 @@ Fine-tune your lead generation with additional filters.
 ### Stakeholder Personas
 
 1. Define who you want to target within organizations:
-   - Select persona types (Decision Maker, Influencer, User)
+   - Select persona types (Decision Maker, Influencer, User) (More could be added upon request)
    - Enter job titles to target (separated by commas)
    - Select departments (Sales, Marketing, Operations, etc.)
 2. Add multiple personas by clicking "Add Another Persona"
@@ -226,8 +226,7 @@ Fine-tune your lead generation with additional filters.
 Identify and select the most qualified stakeholders at target companies.
 
 1. Select your data source:
-   - LinkedIn Sales Navigator: For professional social data
-   - Clay API: For comprehensive contact information
+   - LinkedIn Sales Navigator: For professional social data (not fully implemented yet for the latest demo.)
 
 2. Define search criteria:
    - Enter target job titles (e.g. "VP of Product Development", "Director of Innovation")
@@ -255,8 +254,7 @@ Review your selections and generate leads.
    - Selected decision makers
 2. Click "Generate Leads" to start the process
 3. The AI will analyze the event data against your ICP and filters
-4. Progress bar will show the lead generation status
-5. Once complete, you'll automatically proceed to the review stage
+4. Once complete, you'll automatically proceed to the review stage
 
 ## Step 5: Review Leads
 
@@ -339,6 +337,9 @@ There are so many more features I would like to fully implement if I had more ti
 ### Allowing multiple selections on target events page
 
 Right now, you can only select one target event because it's a prototype. In the future, the end-user will be able to select multiple events.
+
+### Adding Lead Genneration Progress Bar/Animation
+Need to add either (1) a Progress bar that will show the lead generation status or (2) a generating leads animation after clicking on the generate leads button.
 
 ### Exporting leads and uploading them to CRM platforms
 As title. The backend for this is not implemented yet. But would help with Dupont Tedlar's workflow integration.
