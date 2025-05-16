@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Card } from '@/components/ui/card';
-import { ArrowLeftIcon, ArrowRightIcon, PencilIcon, BoltIcon, AlertCircle, Loader2 } from 'lucide-react';
+import { ArrowLeftIcon, ArrowRightIcon, PencilIcon, BoltIcon, AlertCircle } from 'lucide-react';
 
 const GenerateLeads: React.FC = () => {
   const { 
@@ -283,20 +283,8 @@ const GenerateLeads: React.FC = () => {
         <Button variant="outline" onClick={handleBack}>
           <ArrowLeftIcon className="mr-2 h-4 w-4" /> Back
         </Button>
-        <Button 
-          onClick={handleContinue}
-          disabled={generateLeadsMutation.isPending}
-        >
-          {generateLeadsMutation.isPending ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Generating Leads...
-            </>
-          ) : (
-            <>
-              Generate Leads <BoltIcon className="ml-2 h-4 w-4" />
-            </>
-          )}
+        <Button onClick={handleContinue}>
+          Generate Leads <BoltIcon className="ml-2 h-4 w-4" />
         </Button>
       </div>
     </div>

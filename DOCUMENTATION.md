@@ -31,19 +31,7 @@ The platform uses a modern React-based frontend with a Node.js Express backend. 
 - **Backend**: Node.js with Express
 - **Data Storage**: In-memory storage (can be upgraded to PostgreSQL)
 - **AI Processing**: OpenAI API integration
-- **Data Scraping**: Web scraping for event data with proper citations (currently scrapes FESPA events live; more sources can be added)
-
-### Why Node.js Instead of Python?
-
-Node.js was chosen for the backend instead of Python for several reasons:
-
-- **Unified JavaScript Stack**: Using Node.js allows both the frontend and backend to be written in JavaScript/TypeScript, making development, code sharing, and onboarding easier.
-- **Real-time and Async Operations**: Node.js excels at handling asynchronous I/O and real-time data, which is ideal for web scraping, API calls, and serving a modern web app.
-- **Performance**: Node.js is highly performant for I/O-bound tasks, such as fetching data from multiple web sources and handling concurrent API requests.
-- **Ecosystem**: The npm ecosystem provides robust libraries for web scraping (axios, cheerio), API integration, and rapid prototyping.
-- **Scalability**: Node.js is well-suited for building scalable web services and can easily be containerized or deployed to cloud platforms.
-
-While Python is also a strong choice for data processing and machine learning, Node.js offers a better fit for a full-stack, event-driven web application like this, especially when integration between frontend and backend is desired. I used mostly python for backend before so this is a new attempt. I really liked the modularity of Node.js
+- **Data Scraping**: Web scraping for event data with proper citations
 
 ## Frontend Structure
 
@@ -61,7 +49,7 @@ The frontend is built as a single-page application with multiple logical steps:
 
 ### UI Framework
 
-The UI is built with shadcn components which provide accessible and customizable interface elements. The design follows a clean dashboard layout with:
+The UI is built with shadcn components which provide accessible, customizable interface elements. The design follows a clean dashboard layout with:
 
 - Step-based navigation
 - Form-based input handling with validation
@@ -87,9 +75,9 @@ The backend provides REST API endpoints to support all frontend operations:
 - `DELETE /api/icp-profiles/:id` - Delete an ICP profile
 
 #### Events
-- `GET /api/events` - Get all events (live-scraped from FESPA; extensible to more sources)
+- `GET /api/events` - Get all events
 - `GET /api/events/:id` - Get specific event
-- `POST /api/events/sync` - Sync events from web sources (currently FESPA; more can be added)
+- `POST /api/events/sync` - Sync events from web sources
 
 #### Personas
 - `GET /api/personas` - Get all personas for the current user
@@ -228,7 +216,7 @@ interface Lead {
 The lead generation process consists of several distinct steps:
 
 ### 1. ICP Definition
-We let the users define their Ideal Customer Profile criteria including:
+Users define their Ideal Customer Profile criteria including:
 - Industry and sub-industry focus
 - Company size (employee count)
 - Revenue range
@@ -237,7 +225,7 @@ We let the users define their Ideal Customer Profile criteria including:
 
 ### 2. Event Targeting
 Users select industry events from:
-- Pre-synced events from web sources with proper citations (uses real data, can be updated by clicking on the sync web button)
+- Pre-synced events from web sources with proper citations
 - Custom uploaded events/companies
 
 ### 3. Filtering Configuration
@@ -255,9 +243,8 @@ Users define additional filters for lead generation:
 - Keywords or specific criteria
 - Minimum strategic relevance score threshold
 
-### 4. AI-Powered Lead Generation + Decision-maker Search
-We use a hybrid approach of **ChatGPT 4o model** and the **LinkedIn Sales Navigator API** to:
-
+### 4. AI-Powered Lead Generation
+The system uses OpenAI to generate leads by:
 1. Analyzing the ICP and event attendees
 2. Identifying potential matches
 3. Qualifying leads based on set criteria
@@ -265,31 +252,39 @@ We use a hybrid approach of **ChatGPT 4o model** and the **LinkedIn Sales Naviga
 5. Creating personalized outreach messages
 6. Enriching leads with additional data (technologies, funding, competitors)
 
-Then switching to LinkedIn Sales Navigator, LeadGen.ai
+### 5. Decision-Maker Identification
+The platform identifies and validates specific decision-makers at target companies:
 
-7. Find decision-makers at those companies
-8. get detailed contact information
-9. then verify the person's role and seniority.
+- Integrates with LinkedIn Sales Navigator and Clay API for real-time stakeholder data
+- Focuses on key roles like:
+  - VPs of Product Development
+  - Directors of Innovation
+  - R&D Leaders focused on coatings and protective solutions
+- Qualifies decision-makers based on:
+  - Relevance to Tedlar applications
+  - Authority to make purchasing decisions
+  - Professional background and experience
+  - Current responsibilities and role
+- Enables filtering and selection of the most qualified stakeholders
+- Each identified decision-maker includes:
+  - Complete contact information (when available)
+  - LinkedIn profile URL
+  - Qualification rationale
+  - Strategic relevance score
 
-Finally, it combines this data to create comprehensive leads with:
-- Real company information from ChatGPT's web search
-- Verified decision-maker details from LinkedIn
-- Calculated fit scores and match reasons (this scoring formula can be modified later by the end-user if needed, to weigh different components differently)
-- Personalized outreach messages (if requested)
-
-**NOTE: IF YOU DON'T HAVE A LINKEDIN API KEY, SWITCH TO THE DEMO BRANCH!**
-
-### 5. Personalized Outreach Generation
+### 6. Personalized Outreach Generation
 For each qualified decision-maker, the system generates:
 
-- Customized message template/LinkedIn connection messages
+- Customized email templates
+- LinkedIn connection messages
+- Phone call scripts
 - All messaging is tailored to:
   - The specific decision-maker's role and responsibilities
   - The company's strategic relevance to DuPont Tedlar
   - The specific product fit and value proposition
   - Current industry trends and challenges
 
-### 8. Lead Review and Refinement
+### 7. Lead Review and Refinement
 Users can:
 - Review generated leads
 - Adjust fit scores
@@ -297,7 +292,7 @@ Users can:
 - Update lead status
 - Prioritize leads for outreach
 
-### 9. Lead Export
+### 8. Lead Export
 Users can export leads to:
 - CSV for spreadsheet applications
 - JSON for system integrations
@@ -308,10 +303,17 @@ Users can export leads to:
 The platform is designed to potentially integrate with:
 
 - **LinkedIn Sales Navigator**: For stakeholder information
+- **Clay API**: For contact information enrichment
 - **CRM Systems**: For lead management
+- **Email Marketing Tools**: For outreach automation
+- **Data Enrichment Services**: For additional company insights
 
 ### Web Scraping Integration
 
-The platform includes web scraping capabilities to fetch the latest events from industry sources. Currently, it scrapes live event data from the FESPA website. The system is designed to be extensible, so more event sources (e.g., ISA, SGIA) can be added easily in the future.
+The platform includes web scraping capabilities to fetch the latest events from industry sources such as:
+- FESPA (Federation of European Screen Printers Associations)
+- ISA (International Sign Association)
+- SGIA (Specialty Graphic Imaging Association)
+- Other relevant industry event sites
 
 All web-scraped data includes source citations to maintain data integrity and authenticity.

@@ -7,7 +7,6 @@ import { generateLeads, generateOutreachMessage, getCompanyEnrichment, LeadGener
 import { ZodError } from "zod";
 import * as z from "zod";
 import OpenAI from "openai";
-import { isValidLinkedInApiKey } from "./services/linkedin";
 
 // Function to securely manage API keys
 async function updateOpenAIAPIKey(apiKey: string): Promise<boolean> {
@@ -16,13 +15,13 @@ async function updateOpenAIAPIKey(apiKey: string): Promise<boolean> {
     if (!apiKey.startsWith('sk-') || apiKey.length < 20) {
       throw new Error('Invalid API key format');
     }
-    
+
     // Set environment variable
     process.env.OPENAI_API_KEY = apiKey;
-    
+
     // Write to .env file (in a real-world scenario, you'd use a more secure storage method)
     // Omitting actual file writing here for security
-    
+
     return true;
   } catch (error) {
     console.error('Error updating OpenAI API key:', error);
@@ -37,13 +36,13 @@ async function verifyOpenAIAPIKey(apiKey: string): Promise<boolean> {
     if (!isValidApiKeyFormat(apiKey)) {
       return false;
     }
-    
+
     // Initialize with the key to check
     const openai = new OpenAI({ apiKey });
-    
+
     // Make a simple API call to verify key works
     await openai.models.list();
-    
+
     return true;
   } catch (error) {
     console.error('Error verifying OpenAI API key:', error);
@@ -456,10 +455,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       // Handle OpenAI API specific errors
-      // Use type guards to safely access error properties
-      const err: any = error;
-
-      if (typeof err.message === "string" && err.message.includes("API key provided")) {
+      if (error.message && error.message.includes("API key provided")) {
         return res.status(500).json({ 
           message: "Failed to generate leads", 
           error: "Invalid OpenAI API key. Please check your API key in the environment variables.",
@@ -468,10 +464,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       
       // Handle rate limit and quota errors
-      if (typeof err.status === "number" && err.status === 429) {
+      if (error.status === 429) {
         // Check for quota exceeded specifically
-        if ((err.error?.code === 'insufficient_quota') || 
-            (typeof err.message === "string" && err.message.includes("quota exceeded"))) {
+        if (error.error?.code === "insufficient_quota" || 
+            (error.message && error.message.includes("quota exceeded"))) {
           return res.status(429).json({ 
             message: "OpenAI API quota exceeded. Please check your billing details.", 
             error: "You have exceeded your OpenAI API quota. Please check your billing details.",
@@ -485,26 +481,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
             code: "rate_limit_exceeded"
           });
         }
-      }
-      
-      // General error response
-      
-      // Handle OpenAI API specific errors
-      if (typeof err.message === "string" && err.message.includes("API key provided")) {
-        return res.status(500).json({ 
-          message: "Failed to generate leads", 
-          error: "Invalid OpenAI API key. Please check your API key in the environment variables.",
-          code: "invalid_api_key"
-        });
-      }
-      
-      // Handle rate limit errors
-      if (typeof err.status === "number" && err.status === 429) {
-        return res.status(429).json({ 
-          message: "OpenAI rate limit exceeded. Please try again later.", 
-          error: "Too many requests to the OpenAI API. Try again in a few minutes.",
-          code: "rate_limit_exceeded"
-        });
       }
       
       // General error response
@@ -583,7 +559,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ outreachMessage, lead: updatedLead });
     } catch (error) {
       console.error("Error generating outreach message:", error);
-      
+
       // Handle OpenAI API specific errors
       if (error.message && error.message.includes("API key provided")) {
         return res.status(500).json({ 
@@ -592,11 +568,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
           code: "invalid_api_key"
         });
       }
-      
+
       // Handle rate limit and quota errors
       if (error.status === 429) {
         // Check for quota exceeded specifically
-        if (error.error?.code === 'insufficient_quota' || 
+        if (error.error?.code === "insufficient_quota" || 
             (error.message && error.message.includes("quota exceeded"))) {
           return res.status(429).json({ 
             message: "OpenAI API quota exceeded. Please check your billing details.", 
@@ -612,27 +588,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           });
         }
       }
-      
-      // General error response
-      
-      // Handle OpenAI API specific errors
-      if (error.message && error.message.includes("API key provided")) {
-        return res.status(500).json({ 
-          message: "Failed to generate outreach message", 
-          error: "Invalid OpenAI API key. Please check your API key in the environment variables.",
-          code: "invalid_api_key"
-        });
-      }
-      
-      // Handle rate limit errors
-      if (error.status === 429) {
-        return res.status(429).json({ 
-          message: "OpenAI rate limit exceeded. Please try again later.", 
-          error: "Too many requests to the OpenAI API. Try again in a few minutes.",
-          code: "rate_limit_exceeded"
-        });
-      }
-      
+
       // General error response
       res.status(500).json({ 
         message: "Failed to generate outreach message", 
@@ -711,27 +667,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error('Error saving API key:', error);
       res.status(500).json({ message: 'Failed to save API key' });
     }
-  });
-
-  // Test endpoint to verify environment variables
-  router.get("/api/test-env", (req, res) => {
-    const openaiKey = process.env.OPENAI_API_KEY || undefined;
-    const linkedinKey = process.env.LINKEDIN_API_KEY || undefined;
-    
-    const response = {
-      openai: {
-        exists: !!openaiKey,
-        isValid: isValidApiKeyFormat(openaiKey),
-        length: openaiKey?.length || 0
-      },
-      linkedin: {
-        exists: !!linkedinKey,
-        isValid: isValidLinkedInApiKey(linkedinKey),
-        length: linkedinKey?.length || 0
-      }
-    };
-
-    res.json(response);
   });
 
   app.use("/api", router);
