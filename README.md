@@ -14,7 +14,27 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 
 WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
 
+## Updates
 **May 15, 2025 Update**: I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
+
+## Table of Contents
+- [Features Overview](#features-overview)
+- [Getting Started... So, how do I use LeadsGen.AI](#getting-started-so-how-do-i-use-leadsgennai)
+   - [Installation](#installation)
+   - [Starting the Application](#starting-the-application)
+- [Documentation](#documentation)
+- [Demo/Walkthrough](#demowalkthrough)
+- [End-User Guide](#end-user-guide)
+   - [Step 1: Select or Create an Ideal Customer Profile (ICP)](#step-1-select-or-create-an-ideal-customer-profile-icp)
+   - [Step 2: Target Event Selection](#step-2-target-event-selection)
+   - [Step 3: Configure Filters](#step-3-configure-filters)
+   - [Step 4: Identify Decision Makers](#step-4-identify-decision-makers)
+   - [Step 5: Generate Leads](#step-5-generate-leads)
+   - [Step 5: Review Leads](#step-5-review-leads)
+   - [Step 6: Export Leads](#step-6-export-leads)
+   - [Additional Features](#additional-features)
+- [Future Work](#future-work)
+- [License](#license)
 
 ## Features Overview
 
