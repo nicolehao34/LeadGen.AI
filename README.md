@@ -3,7 +3,6 @@
 =======
 
 An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
->>>>>>> origin/main
 
 
 <img width="1434" alt="Screenshot 2025-05-15 at 3 52 41 PM" src="https://github.com/user-attachments/assets/4f1eba4f-8229-4b10-aa14-34f481061173" />
@@ -17,11 +16,6 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
 
 **May 15, 2025 Update**: I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
-=======
-WELCOME TO THE MAINMBRANCH. THIS BRANCH CONTAINS LINKEDIN SERVICES.
-
-I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
->>>>>>> origin/main
 
 ## Features Overview
 
@@ -77,10 +71,6 @@ For more detailed information, see:
 ## Demo/Walkthrough
 [https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
 
-=======
-## Final Presentation/Demo
-[https://www.loom.com/share/748d9f53bc00435abe2a610de08dc23f?sid=ee3310cd-0691-48df-bc90-76d9734fe9e6](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
->>>>>>> origin/main
 
 The text version of the demo is here:
 
@@ -89,8 +79,6 @@ Assuming that you are an end-user who's working at DuPont Tedlar's sales team na
 <<<<<<< HEAD
 # End-User Guide
 (For the end-users at the sales team of Dupont-Tedlar.)
-=======
->>>>>>> origin/main
 
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
@@ -336,7 +324,20 @@ Final step: export your qualified leads.
 
 ### Allowing multiple selections on target events page
 
-Right now you can only select one target event because it's a prototype. In the future, the end-user will be able to select multiple events.
+Right now, you can only select one target event because it's a prototype. In the future, the end-user will be able to select multiple events.
+
+### Exporting leads and uploading them to CRM platforms
+As title. The backend for this is not implemented yet. But would help with Dupont Tedlar's workflow integration.
+
+### Displaying Match Details with Sources
+Each generated lead should have a tab on its page named match details that shows exactly which previously specified criteria the lead matched with, this can be done using the GPT-o4 model as well. 
+
+Currently, if you click on the tab, it displays the following message:
+No detailed match criteria available for this lead
+This lead was generated with an earlier version of the system which didn't include detailed matching metrics.
+
+### Linkedin Sales Navigator API
+I have the backend and the frontend setup for this feature but I unfortunately don't have a linkedin API key.... So as a result the linkedin links you see in the demo are all invalid. In the main branch, I still kept most of the backend functionalities for linkedin services. If you are curious.
 
 ### Feedback Loop
 
