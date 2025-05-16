@@ -63,7 +63,7 @@ For more detailed information, see:
 - Design Document (Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
 
 
-## Final Presentation/Demo
+## Demo/Walkthrough
 [https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
 
 
