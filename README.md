@@ -312,6 +312,11 @@ Final step: export your qualified leads.
 
 
 ## Future Work
+
+### Allowing multiple selections on target events page
+
+Right now you can only select one target event because it's a prototype. In the future, the end-user will be able to select multiple events.
+
 ### Feedback Loop
 
 I didn't get the time to implement this fully, but ideally, after contacting leads, the end-user should be able to update their status to improve future lead generation, to truly create a humna-in-the-loop ai agent experience. For example:
