@@ -159,7 +159,7 @@ export async function generateOutreachMessage(lead: Partial<GeneratedLead>, requ
     }
     
     const prompt = `
-Generate a personalized EMAIL message for a potential lead with the following details:
+Generate a personalized outreach message for a potential lead with the following details:
 - Event: ${request.event.name} on ${request.event.date} in ${request.event.location}
 - Company Name: ${lead.company?.name}
 - Stakeholder Name: ${lead.stakeholder?.name}
@@ -168,16 +168,15 @@ Generate a personalized EMAIL message for a potential lead with the following de
 - Why this company fits our ICP: ${lead.matchReason || ""}
 
 The message should:
-1. Be an email format (not a LinkedIn message)
-2. Reference the upcoming event
-3. Be personalized to the stakeholder's role and industry
-4. Highlight how DuPont Tedlar can address the needs of a Graphics & Signage company
-5. Include a clear call to action to schedule a meeting at the event
-6. Be brief (3-4 sentences), professional, and direct
-7. Not sound like generic marketing language
-8. Avoid phrases like "I hope this email finds you well"
+1. Reference the upcoming event
+2. Be personalized to the stakeholder's role and industry
+3. Highlight how DuPont Tedlar can address the needs of a Graphics & Signage company
+4. Include a clear call to action to schedule a meeting at the event
+5. Be brief (3-4 sentences), professional, and direct
+6. Not sound like generic marketing language
+7. Avoid phrases like "I hope this email finds you well"
 
-Email Message:
+Message:
 `;
 
     const response = await openai.chat.completions.create({
