@@ -65,13 +65,11 @@ For more detailed information, see:
 ## Demo/Walkthrough
 [https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
 
-
-The text version of the demo is here:
+# End-User Guide
+(For the end-users at the sales team of Dupont-Tedlar.)
 
 Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
 
-# End-User Guide
-(For the end-users at the sales team of Dupont-Tedlar.)
 
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
