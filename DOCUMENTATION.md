@@ -37,8 +37,6 @@ The platform uses a modern React-based frontend with a Node.js Express backend. 
 
 The frontend is built as a single-page application with multiple logical steps:
 
-### Key Components
-
 - **WorkflowContext**: Global state management for the lead generation workflow
 - **ICPSelection**: Selection and creation of Ideal Customer Profile criteria
 - **TargetEventSelector**: Selection of industry events with source citations
@@ -92,6 +90,7 @@ The backend provides REST API endpoints to support all frontend operations:
 - `POST /api/leads` - Create a new lead manually
 - `PATCH /api/leads/:id` - Update a lead
 - `DELETE /api/leads/:id` - Delete a lead
+
 
 ## Data Storage
 
@@ -224,9 +223,10 @@ Users define their Ideal Customer Profile criteria including:
 - Additional qualifying criteria
 
 ### 2. Event Targeting
-Users select industry events from:
+The system queries the GPT-o4 model to search the web for the latest events in the previously selected indutry. Then the end-users can select industry events from:
 - Pre-synced events from web sources with proper citations
-- Custom uploaded events/companies
+- After clicking on sync web button, the newly updated events scraped from the internet using GPT-04
+- Custom uploaded events/companies (csv files)
 
 ### 3. Filtering Configuration
 Users define additional filters for lead generation:
@@ -277,7 +277,6 @@ For each qualified decision-maker, the system generates:
 
 - Customized email templates
 - LinkedIn connection messages
-- Phone call scripts
 - All messaging is tailored to:
   - The specific decision-maker's role and responsibilities
   - The company's strategic relevance to DuPont Tedlar
@@ -285,7 +284,7 @@ For each qualified decision-maker, the system generates:
   - Current industry trends and challenges
 
 ### 7. Lead Review and Refinement
-Users can:
+Users can now:
 - Review generated leads
 - Adjust fit scores
 - Edit outreach messages
@@ -303,14 +302,13 @@ Users can export leads to:
 The platform is designed to potentially integrate with:
 
 - **LinkedIn Sales Navigator**: For stakeholder information
-- **Clay API**: For contact information enrichment
 - **CRM Systems**: For lead management
 - **Email Marketing Tools**: For outreach automation
 - **Data Enrichment Services**: For additional company insights
 
 ### Web Scraping Integration
 
-The platform includes web scraping capabilities to fetch the latest events from industry sources such as:
+The platform includes web scraping capabilities to fetch the latest events from sources such as:
 - FESPA (Federation of European Screen Printers Associations)
 - ISA (International Sign Association)
 - SGIA (Specialty Graphic Imaging Association)
