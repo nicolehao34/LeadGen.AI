@@ -317,7 +317,10 @@ Final step: export your qualified leads.
 
 ### Allowing multiple selections on target events page
 
-Right now you can only select one target event because it's a prototype. In the future, the end-user will be able to select multiple events.
+Right now, you can only select one target event because it's a prototype. In the future, the end-user will be able to select multiple events.
+
+### Exporting leads and uploading them to CRM platforms
+As title. The backend for this is not implemented yet. But would help with Dupont Tedlar's workflow integration.
 
 ### Feedback Loop
 
