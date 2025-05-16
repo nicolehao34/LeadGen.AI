@@ -43,7 +43,7 @@ Node.js was chosen for the backend instead of Python for several reasons:
 - **Ecosystem**: The npm ecosystem provides robust libraries for web scraping (axios, cheerio), API integration, and rapid prototyping.
 - **Scalability**: Node.js is well-suited for building scalable web services and can easily be containerized or deployed to cloud platforms.
 
-While Python is also a strong choice for data processing and machine learning, Node.js offers a better fit for a full-stack, event-driven web application like this, especially when seamless integration between frontend and backend is desired.
+While Python is also a strong choice for data processing and machine learning, Node.js offers a better fit for a full-stack, event-driven web application like this, especially when integration between frontend and backend is desired. I used mostly python for backend before so this is a new attempt. I really liked the modularity of Node.js
 
 ## Frontend Structure
 
@@ -61,7 +61,7 @@ The frontend is built as a single-page application with multiple logical steps:
 
 ### UI Framework
 
-The UI is built with shadcn components which provide accessible, customizable interface elements. The design follows a clean dashboard layout with:
+The UI is built with shadcn components which provide accessible and customizable interface elements. The design follows a clean dashboard layout with:
 
 - Step-based navigation
 - Form-based input handling with validation
@@ -277,13 +277,12 @@ Finally, it combines this data to create comprehensive leads with:
 - Calculated fit scores and match reasons (this scoring formula can be modified later by the end-user if needed, to weigh different components differently)
 - Personalized outreach messages (if requested)
 
+**NOTE: IF YOU DON'T HAVE A LINKEDIN API KEY, SWITCH TO THE DEMO BRANCH!**
 
 ### 5. Personalized Outreach Generation
 For each qualified decision-maker, the system generates:
 
-- Customized email templates
-- LinkedIn connection messages
-- Phone call scripts
+- Customized message template/LinkedIn connection messages
 - All messaging is tailored to:
   - The specific decision-maker's role and responsibilities
   - The company's strategic relevance to DuPont Tedlar
@@ -309,10 +308,7 @@ Users can export leads to:
 The platform is designed to potentially integrate with:
 
 - **LinkedIn Sales Navigator**: For stakeholder information
-- **Clay API**: For contact information enrichment
 - **CRM Systems**: For lead management
-- **Email Marketing Tools**: For outreach automation
-- **Data Enrichment Services**: For additional company insights
 
 ### Web Scraping Integration
 
