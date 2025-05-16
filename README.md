@@ -322,6 +322,16 @@ Right now, you can only select one target event because it's a prototype. In the
 ### Exporting leads and uploading them to CRM platforms
 As title. The backend for this is not implemented yet. But would help with Dupont Tedlar's workflow integration.
 
+### Displaying Match Details with Sources
+Each generated lead should have a tab on its page named match details that shows exactly which previously specified criteria the lead matched with, this can be done using the GPT-o4 model as well. 
+
+Currently, if you click on the tab, it displays the following message:
+No detailed match criteria available for this lead
+This lead was generated with an earlier version of the system which didn't include detailed matching metrics.
+
+### Linkedin Sales Navigator API
+I have the backend and the frontend setup for this feature but I unfortunately don't have a linkedin API key.... So as a result the linkedin links you see in the demo are all invalid. In the main branch, I still kept most of the backend functionalities for linkedin services. If you are curious.
+
 ### Feedback Loop
 
 I didn't get the time to implement this fully, but ideally, after contacting leads, the end-user should be able to update their status to improve future lead generation, to truly create a humna-in-the-loop ai agent experience. For example:
