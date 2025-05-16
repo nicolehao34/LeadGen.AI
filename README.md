@@ -1,4 +1,9 @@
 # LeadsGen.AI
+<<<<<<< HEAD
+=======
+
+An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
+>>>>>>> origin/main
 
 
 <img width="1434" alt="Screenshot 2025-05-15 at 3 52 41 PM" src="https://github.com/user-attachments/assets/4f1eba4f-8229-4b10-aa14-34f481061173" />
@@ -8,9 +13,15 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 
 ~ Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar. ✨
 
+<<<<<<< HEAD
 WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
 
 **May 15, 2025 Update**: I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
+=======
+WELCOME TO THE MAINMBRANCH. THIS BRANCH CONTAINS LINKEDIN SERVICES.
+
+I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
+>>>>>>> origin/main
 
 ## Features Overview
 
@@ -62,16 +73,24 @@ For more detailed information, see:
 - Design Document (Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
 
 
+<<<<<<< HEAD
 ## Demo/Walkthrough
 [https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
 
+=======
+## Final Presentation/Demo
+[https://www.loom.com/share/748d9f53bc00435abe2a610de08dc23f?sid=ee3310cd-0691-48df-bc90-76d9734fe9e6](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
+>>>>>>> origin/main
 
 The text version of the demo is here:
 
 Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
 
+<<<<<<< HEAD
 # End-User Guide
 (For the end-users at the sales team of Dupont-Tedlar.)
+=======
+>>>>>>> origin/main
 
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
