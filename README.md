@@ -1,5 +1,4 @@
 # LeadsGen.AI
-<img width="359" alt="Screenshot 2025-05-15 at 3 45 33 PM" src="https://github.com/user-attachments/assets/ba73eb1b-dd05-4388-a65a-e76c2064e63b" />
 
 An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
 
@@ -10,6 +9,9 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 
 Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar.
 
+WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
+
+I used replit to help with fast deployment. Check out the link her: https://genlead-ai-nicolehao7.replit.app/
 
 ## Features Overview
 
@@ -21,8 +23,7 @@ Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready
 - ✉️ **Personalized Outreach**: Generate custom outreach messages based on ICP and stakeholder
 - 📊 **Lead Management**: Review, filter, and export leads
 
-## Getting Started... So, how do I use LeadsGen.AI?!
-Good question! Please follow the steps below! - Nico :)
+## Getting Started... So, how do I use LeadsGen.AI
 
 ### Installation
 
