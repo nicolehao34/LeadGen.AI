@@ -59,12 +59,14 @@ app.use((req, res, next) => {
   // ALWAYS serve the app on port 3000
   // this serves both the API and the client.
   // It is the only port that is not firewalled.
+  //
   const port = 3000;
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
+
+  // Here, note that we are using the `server` instance
+  // returned from `registerRoutes` instead of the `app` instance.
+  // This is because the `server` instance is the one that
+  // is actually listening for incoming requests.
+  server.listen(port, () => {
     log(`serving on port ${port}`);
   });
 })();
