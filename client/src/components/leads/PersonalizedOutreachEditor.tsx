@@ -24,7 +24,8 @@ import {
   Copy, 
   CheckCheck, 
   Mail,
-  Phone
+  Phone,
+  LinkedinIcon
 } from 'lucide-react';
 
 interface DecisionMaker {
@@ -32,6 +33,7 @@ interface DecisionMaker {
   name: string;
   title: string;
   company: string;
+  linkedinUrl: string;
   email?: string;
   phone?: string;
   relevanceScore: number;
@@ -59,9 +61,9 @@ const PersonalizedOutreachEditor: React.FC<PersonalizedOutreachEditorProps> = ({
   valueProposition
 }) => {
   const [emailTemplate, setEmailTemplate] = useState<string>('');
-  // LinkedIn template removed for demo version
+  const [linkedinTemplate, setLinkedinTemplate] = useState<string>('');
   const [phoneTemplate, setPhoneTemplate] = useState<string>('');
-  const [outreachChannel, setOutreachChannel] = useState<'email' | 'phone'>('email');
+  const [outreachChannel, setOutreachChannel] = useState<'email' | 'linkedin' | 'phone'>('email');
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const [copied, setCopied] = useState<boolean>(false);
 
@@ -102,8 +104,19 @@ Graphics & Signage Solutions
 (555) 123-4567
 john.smith@dupont.com`;
 
-      // LinkedIn Template removed for demo version
-      const newLinkedinTemplate = ''; // Empty template for demo version
+      // LinkedIn Template
+      const newLinkedinTemplate = `Hi ${decisionMaker.name},
+
+I noticed your impressive work as ${decisionMaker.title} at ${companyInfo.name} and your focus on innovative materials for graphics applications.
+
+I lead business development for DuPont Tedlar® in the graphics sector and wanted to connect regarding our protective films that offer exceptional weatherability, chemical resistance, and UV protection for signage applications.
+
+${productFit ? productFit : 'Your recent developments in durable outdoor solutions align perfectly with our material capabilities.'}
+
+Would you be open to a brief conversation about how leading manufacturers are using Tedlar® to extend product lifespan and reduce warranty claims?
+
+Thanks for considering,
+John`;
 
       // Phone Template
       const newPhoneTemplate = `Hello ${decisionMaker.name},
@@ -119,7 +132,7 @@ I'd like to share some specific applications and case studies relevant to your b
 [If voicemail]: Please feel free to call me back at (555) 123-4567 or email john.smith@dupont.com if you'd like to learn more. Thank you for your time.`;
 
       setEmailTemplate(newEmailTemplate);
-      // LinkedIn template setting removed for demo version
+      setLinkedinTemplate(newLinkedinTemplate);
       setPhoneTemplate(newPhoneTemplate);
       setIsGenerating(false);
     }, 1500);
@@ -131,6 +144,9 @@ I'd like to share some specific applications and case studies relevant to your b
     switch (outreachChannel) {
       case 'email':
         textToCopy = emailTemplate;
+        break;
+      case 'linkedin':
+        textToCopy = linkedinTemplate;
         break;
       case 'phone':
         textToCopy = phoneTemplate;
@@ -176,7 +192,17 @@ I'd like to share some specific applications and case studies relevant to your b
                   </div>
                 )}
                 
-                {/* LinkedIn profile link removed for demo version */}
+                <div className="flex items-center text-sm">
+                  <LinkedinIcon className="h-3.5 w-3.5 mr-2 text-neutral-500" />
+                  <a 
+                    href={decisionMaker.linkedinUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline"
+                  >
+                    LinkedIn Profile
+                  </a>
+                </div>
               </div>
               
               <div className="space-y-1 pt-2">
@@ -192,11 +218,15 @@ I'd like to share some specific applications and case studies relevant to your b
           
           {/* Outreach Templates */}
           <div className="w-full md:w-2/3 space-y-4">
-            <Tabs defaultValue="email" onValueChange={(val) => setOutreachChannel(val as 'email' | 'phone')}>
-              <TabsList className="grid grid-cols-2 w-full">
+            <Tabs defaultValue="email" onValueChange={(val) => setOutreachChannel(val as 'email' | 'linkedin' | 'phone')}>
+              <TabsList className="grid grid-cols-3 w-full">
                 <TabsTrigger value="email">
                   <Mail className="h-4 w-4 mr-2" />
                   Email
+                </TabsTrigger>
+                <TabsTrigger value="linkedin">
+                  <LinkedinIcon className="h-4 w-4 mr-2" />
+                  LinkedIn
                 </TabsTrigger>
                 <TabsTrigger value="phone">
                   <Phone className="h-4 w-4 mr-2" />
@@ -213,7 +243,14 @@ I'd like to share some specific applications and case studies relevant to your b
                 />
               </TabsContent>
               
-              {/* LinkedIn TabsContent removed for demo version */}
+              <TabsContent value="linkedin" className="mt-4">
+                <Textarea 
+                  value={linkedinTemplate}
+                  onChange={(e) => setLinkedinTemplate(e.target.value)}
+                  placeholder="LinkedIn message will appear here..."
+                  className="min-h-[400px] font-mono text-sm"
+                />
+              </TabsContent>
               
               <TabsContent value="phone" className="mt-4">
                 <Textarea 
