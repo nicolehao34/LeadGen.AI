@@ -320,5 +320,5 @@ https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=df87dcff-a188-41
 
 ## License
 
-Proprietary - All rights reserved.
+Proprietary - All rights reserved to ME.
 
