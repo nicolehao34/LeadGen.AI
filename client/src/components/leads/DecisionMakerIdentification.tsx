@@ -10,6 +10,12 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from "@/components/ui/tabs";
+import {
   Table,
   TableBody,
   TableCell,
@@ -21,13 +27,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { Badge } from "@/components/ui/badge";
-import { CheckCircle, Search, ExternalLink, Users, Filter } from 'lucide-react';
+import { CheckCircle, LinkedinIcon, Search, ExternalLink, Users, Filter } from 'lucide-react';
 
 interface DecisionMaker {
   id: string;
   name: string;
   title: string;
   company: string;
+  linkedinUrl: string;
   email?: string;
   phone?: string;
   relevanceScore: number;
@@ -45,6 +52,7 @@ const mockDecisionMakers: DecisionMaker[] = [
     name: 'Laura Noll',
     title: 'Vice President, Materials Science',
     company: 'Avery Dennison',
+    linkedinUrl: 'https://www.linkedin.com/in/laura-noll-6388a55/',
     email: 'laura.noll@example.com',
     phone: '(555) 123-4567',
     relevanceScore: 92,
@@ -61,6 +69,7 @@ const mockDecisionMakers: DecisionMaker[] = [
     name: 'James Wilson',
     title: 'Director of Innovation',
     company: '3M Graphics',
+    linkedinUrl: 'https://www.linkedin.com/in/james-wilson-example/',
     email: 'jwilson@example.com',
     relevanceScore: 88,
     qualifications: [
@@ -76,6 +85,7 @@ const mockDecisionMakers: DecisionMaker[] = [
     name: 'Sarah Chen',
     title: 'Director of Product Development',
     company: 'ORAFOL Americas',
+    linkedinUrl: 'https://www.linkedin.com/in/sarah-chen-example/',
     phone: '(555) 987-6543',
     relevanceScore: 85,
     qualifications: [
@@ -92,6 +102,7 @@ const DecisionMakerIdentification: React.FC<DecisionMakerIdentificationProps> = 
   onSelectDecisionMakers 
 }) => {
   const [decisionMakers, setDecisionMakers] = useState<DecisionMaker[]>(mockDecisionMakers);
+  const [dataSource, setDataSource] = useState<'linkedin' | 'clay'>('linkedin');
   const [searchCriteria, setSearchCriteria] = useState({
     titles: "VP of Product Development, Director of Innovation, R&D Leader, Materials Science",
     companies: "",
@@ -117,10 +128,10 @@ const DecisionMakerIdentification: React.FC<DecisionMakerIdentificationProps> = 
   const handleSearch = () => {
     setIsSearching(true);
     
-    // Simulate API call to contact database
+    // In a real implementation, this would make an API call to LinkedIn or Clay
     setTimeout(() => {
       setIsSearching(false);
-      // In a real implementation, data would be returned from the API
+      // Data would be returned from the API and set here
     }, 1500);
   };
 
@@ -134,10 +145,16 @@ const DecisionMakerIdentification: React.FC<DecisionMakerIdentificationProps> = 
               Identify and qualify decision makers from target companies
             </CardDescription>
           </div>
-          <div className="flex items-center">
-            <Users className="h-5 w-5 mr-2" />
-            <span className="text-sm font-medium">Contact Database</span>
-          </div>
+          <Tabs defaultValue="linkedin" onValueChange={(val) => setDataSource(val as 'linkedin' | 'clay')}>
+            <TabsList>
+              <TabsTrigger value="linkedin">
+                <LinkedinIcon className="h-4 w-4 mr-2" /> LinkedIn Sales Navigator
+              </TabsTrigger>
+              <TabsTrigger value="clay">
+                <Users className="h-4 w-4 mr-2" /> Clay API
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
         </div>
       </CardHeader>
       <CardContent className="space-y-6">
@@ -243,6 +260,14 @@ const DecisionMakerIdentification: React.FC<DecisionMakerIdentificationProps> = 
                       <div>
                         <div className="font-medium">{dm.name}</div>
                         <div className="text-sm text-neutral-500">{dm.title}</div>
+                        <a 
+                          href={dm.linkedinUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-600 hover:underline flex items-center mt-1"
+                        >
+                          <LinkedinIcon className="h-3 w-3 mr-1" /> LinkedIn Profile
+                        </a>
                       </div>
                     </TableCell>
                     <TableCell>{dm.company}</TableCell>
