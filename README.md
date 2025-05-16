@@ -11,7 +11,7 @@ Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready
 
 WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
 
-I used replit to help with fast deployment. Check out the link her: https://genlead-ai-nicolehao7.replit.app/
+I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
 
 ## Features Overview
 
