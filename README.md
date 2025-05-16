@@ -1,6 +1,5 @@
 # LeadsGen.AI
 
-=======
 
 An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics & Signage team. The system automates finding and qualifying sales leads by researching industry events and trade associations where potential customers might be present.
 
@@ -58,14 +57,12 @@ WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU 
 3. Create a `.env` file with your OpenAI API key and LinkedIn Sales Navigator API Key:
    ```
    OPENAI_API_KEY=your_key_here
-   LINKEDIN_API_KEY=your_real_api_key_here
-
    ```
 
    or in your terminal, enter
    ```
    export OPENAI_API_KEY=sk-YOUR-API-KEY-HERE
-   export LINKEDIN_API_KEY=your_real_api_key_here
+   export
    ```
    
 
@@ -86,19 +83,15 @@ For more detailed information, see:
 - Design Document (Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
 
 
-<<<<<<< HEAD
 ## Demo/Walkthrough
 [https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca](https://www.loom.com/share/127c02e726394d038c29dd18419ce4d8?sid=7ff1b0c6-f1e7-4877-93ee-48ea8ae139ca)
 
 
-The text version of the demo is here:
 
-Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
-
-<<<<<<< HEAD
 # End-User Guide
 (For the end-users at the sales team of Dupont-Tedlar.)
 
+Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
 The first step is to define who your ideal customers are.
