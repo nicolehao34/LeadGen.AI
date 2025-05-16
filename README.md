@@ -55,8 +55,22 @@ npm run dev
 
 The application will be available at [http://localhost:3000](http://localhost:3000)
 
+## Documentation
+
+For more detailed information, see:
+
+- [Technical Documentation](DOCUMENTATION.md) - System architecture, tech stack, data storage, data flow, data processing
+- Design Document (Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
+
+
+## Final Presentation/Demo
+https://www.loom.com/share/748d9f53bc00435abe2a610de08dc23f?sid=ee3310cd-0691-48df-bc90-76d9734fe9e6
+
+The text version of the demo is here:
 
 Assuming that you are an end-user who's working at DuPont Tedlar's sales team named John Smith (I know, great name!), and that you have already logged in using your company email/acount. 
+
+
 ## Step 1: Select or Create an Ideal Customer Profile (ICP)
 
 The first step is to define who your ideal customers are.
@@ -306,17 +320,6 @@ I didn't get the time to implement this fully, but ideally, after contacting lea
 2. Then Update lead statuses based on actual interactions
 3. This feedback helps the AI improve future recommendations
 
-
-## Documentation
-
-For detailed information, see:
-
-- [Technical Documentation](DOCUMENTATION.md) - System architecture, tech stack, data storage, data flow, data processing
-- Design Document (Instalily_Case_Study (1).pdf) - End-user and AI agent workflows design + UX design
-
-
-## Final Presentation/Demo
-- TO BE ADDED!!!!!!
 
 ## License
 
