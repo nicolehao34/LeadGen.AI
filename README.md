@@ -14,7 +14,7 @@ Ready to be adapted to different product teams at DuPont Tedlar. ✨
 WELCOME TO THE DEMO BRANCH. 
 
 **May 15, 2025 Update - I have no LinkedIn API Key >:(** 
-I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
+I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF. There's some residue of my attempts at linkedin sales navigator integration in the dev branch. I'll keep working on it!
 
 **May 15, 2025 Update**: I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
 
