@@ -10,7 +10,7 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 
 WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
 
-I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
+**May 15, 2025 Update**: I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
 
 ## Features Overview
 
