@@ -5,10 +5,10 @@ An AI-powered lead generation platform for DuPont Tedlar's Graphics & Signage te
 ## Features
 
 - 🎯 **ICP Targeting**: Define and select Ideal Customer Profiles (ICPs)
-- 🔍 **Event Research**: Explore industry events with source citations
-- 📋 **Stakeholder Personas**: Define and target specific roles within organizations
+- 🔍 **Event Research**: Explore recent industry events with source citations
+- 📋 **Stakeholder Personas**: Customize and target specific roles within organizations
 - 🤖 **AI-Powered Lead Generation**: Generate qualified leads with match reasons and fit scores
-- 💼 **Lead Enrichment**: Enhance leads with company and stakeholder information
+- 💼 **Data Enrichment**: Enhance leads with company and stakeholder information
 - ✉️ **Personalized Outreach**: Generate custom outreach messages based on ICP and stakeholder
 - 📊 **Lead Management**: Review, filter, and export leads
 
