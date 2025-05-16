@@ -9,7 +9,7 @@ An AI-powered lead generation and outreach platform for DuPont Tedlar's Graphics
 
 Built by Nicole Hao with **scalability** and **generalizability** in mind. Ready to be adapted to different product teams at DuPont Tedlar.
 
-WELCOME TO THE DEMO BRANCH. I REMOVED ALL LINKEDIN SERVICES HERE SO EVEN IF YOU DON'T HAVE A LINKEDIN API KEY, YOU SHOULD BE ABLE TO RUN THE DEMO ITSELF.
+WELCOME TO THE MAINMBRANCH. THIS BRANCH CONTAINS LINKEDIN SERVICES.
 
 I used replit to help with fast deployment. [Check it out!](https://genlead-ai-nicolehao7.replit.app/)
 
