@@ -212,7 +212,7 @@ interface Lead {
 
 ## Lead Generation Process
 
-The lead generation process consists of several distinct steps:
+The lead generation process consists of several steps:
 
 ### 1. ICP Definition
 Users define their Ideal Customer Profile criteria including:
