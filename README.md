@@ -81,7 +81,6 @@ The application will be available at [http://localhost:3000](http://localhost:30
 For more detailed information, see:
 
 - [Technical Documentation](DOCUMENTATION.md) - System architecture, tech stack, data storage, data flow, data processing
-- [Design Document](https://www.overleaf.com/read/brzbyyvjftny#c8a280) - Design assumptions, End-user and AI agent workflows design, UX design sketches,  data processing, summarization of implementation results
 
 
 ## Demo/Walkthrough
